@@ -49,7 +49,7 @@
                     <a href="/achievements" class="nav-item nav-link ">Yutuqlar</a>
                     <a href="/gallery" class="nav-item nav-link">Galereya</a>
                     <a href="/blog" class="nav-item nav-link">Maqolalar</a>
-                    <a href="/contact" class="nav-item nav-link">Aloqa</a>
+                    <a href="#." class="nav-item nav-link">Aloqa</a>
                 </div>
                 </div> 
                 <a class="btn btn-primaryy px-4" href="Uzb"><img style="padding: 3px;" src="img/Uzbekistan-Flag-icon.png" width="35" height="35" alt="lorem"></a>
@@ -113,12 +113,12 @@
             <div class="col-lg-3 col-md-6 mb-5">
                 <h3 class="text-primary mb-4">Tezkor havolalar</h3>
                 <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Bosh sahifa</a>
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Sinflar</a>
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>O'qituvchilar</a>
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Galereya</a>
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Maqolalar</a>
-                    <a class="text-white" href="#"><i class="fa fa-angle-right mr-2"></i>Aloqa</a>
+                    <a class="text-white mb-2" href="/"><i class="fa fa-angle-right mr-2"></i>Bosh sahifa</a>
+                    <a class="text-white mb-2" href="/class"><i class="fa fa-angle-right mr-2"></i>Sinflar</a>
+                    <a class="text-white mb-2" href="/team"><i class="fa fa-angle-right mr-2"></i>O'qituvchilar</a>
+                    <a class="text-white mb-2" href="/gallery"><i class="fa fa-angle-right mr-2"></i>Galereya</a>
+                    <a class="text-white mb-2" href="/blog"><i class="fa fa-angle-right mr-2"></i>Maqolalar</a>
+                    <a class="text-white" href="#."><i class="fa fa-angle-right mr-2"></i>Aloqa</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-5">
