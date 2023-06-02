@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Comment;
+use App\Models\Teacher;
 
 class PagesController extends Controller
 {
 
     public function welcome(){
-        return view('welcome');
+        $comments = Comment::latest()->take(3)->get();
+        $teachers = Teacher::latest()->take(4)->get();
+        return view('welcome', compact('comments', 'teachers'));
     }
 
     public function main(){
@@ -20,7 +24,9 @@ class PagesController extends Controller
     }
 
     public function team(){
-        return view('team');
+        $comments = Comment::latest()->take(6)->get();
+        $teachers = Teacher::latest()->take(8)->get();
+        return view('team', compact('comments', 'teachers'));
     }
 
     public function gallery(){

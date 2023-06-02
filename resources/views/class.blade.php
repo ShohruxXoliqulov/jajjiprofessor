@@ -22,8 +22,8 @@
 
 
    <!-- Registration Start -->
-@include('sections.order')
-<!-- Registration End -->
+    @include('sections.order')
+    <!-- Registration End -->
 
 
 @endsection
