@@ -12,7 +12,7 @@
                     {{ $item->description }}
                 </div>
                 <div class="d-flex align-items-center">
-                    <img class="rounded-circle" src="{{ $item->img }}" width="30px" height="30px" alt="Image">
+                    <img class="rounded-circle" src="/files/{{ $item->img }}" style="width: 80px; height: 80px; border-redius: 50%;" alt="Image">
                     <div class="pl-3">
                         <h5>{{ $item->name }}</h5>
                         <i>{{ $item->field }}</i>

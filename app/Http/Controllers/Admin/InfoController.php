@@ -7,6 +7,7 @@ use App\Models\Info;
 use Illuminate\Http\Request;
 use App\Http\Requests\InfoStoreRequest;
 use App\Http\Requests\InfoUpdateRequest;
+use App\Events\AuditEvent;
 
 class InfoController extends Controller
 {
@@ -36,6 +37,9 @@ class InfoController extends Controller
         }
 
         Info::create($requestData);
+
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'infos', 'add', json_encode($requestData)));
 
         return redirect()->route('admin.infos.index');
     }

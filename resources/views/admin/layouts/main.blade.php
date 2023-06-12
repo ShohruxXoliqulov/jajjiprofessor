@@ -35,6 +35,18 @@
 				</a>
 			</li>
 			<li>
+				<a href="{{ route('admin.numbers.index') }}">
+					<i class='bx bxs-shopping-bag-alt' ></i>
+					<span class="text">Numbers</span>
+				</a>
+			</li>
+			<li>
+				<a href="{{ route('admin.humans.index') }}">
+					<i class='bx bxs-shopping-bag-alt' ></i>
+					<span class="text">Humans</span>
+				</a>
+			</li>
+			<li>
 				<a href="{{ route('admin.groups.index') }}">
 					<i class='bx bxs-doughnut-chart' ></i>
 					<span class="text">Groups</span>

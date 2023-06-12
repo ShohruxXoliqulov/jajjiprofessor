@@ -13,6 +13,10 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ComplaintController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\NumberController;
+use App\Http\Controllers\Admin\HumanController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +65,10 @@ Route::prefix('admin/')->name('admin.')->group(function(){
     Route::resource('photos', PhotoController::class);
     Route::resource('orders', OrderController::class);
     Route::resource('complaints', ComplaintController::class);
+    Route::resource('numbers', NumberController::class);
+    Route::resource('humans', HumanController::class);
+
+
 
 });
     

@@ -18,21 +18,15 @@
             <div class="table-data">
                 <div class="order">
                     <div class="head">
-                        <h3>Add Wins</h3>
-                        <a class="create__btn" href="{{route('admin.wins.index')}}"> <i class='bx bx-arrow-back'></i>Qaytish</a>
+                        <h3>Add humans</h3>
+                        <a class="create__btn" href="{{route('admin.humans.index')}}"> <i class='bx bx-arrow-back'></i>Qaytish</a>
 
                     </div>
 
-                    <form class="create__inputs" action="{{ route('admin.wins.store') }}" method="POST" enctype="multipart/form-data">
+                    <form class="create__inputs" action="{{ route('admin.humans.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <strong> Rasm(png yoki jpg) :</strong>
-                        <input type="file" name="img" class="form-control"> <br>
-
-                        <strong> title :</strong>
-                        <input type="text" name="title" class="form-control"> <br>
-
-                        <strong> Description :</strong>
-                        <input type="text" name="description" class="form-control"> <br>
+                        <strong> name :</strong>
+                        <input type="text" name="name" class="form-control"> <br>
 
                         <input type="submit" value="Qo`shish">
 
