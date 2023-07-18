@@ -16,19 +16,6 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\NumberController;
 use App\Http\Controllers\Admin\HumanController;
 
-
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 Route::get('/', [PagesController::class, 'welcome'])->name('welcome');
 
 // Route::get('layouts.main', [PagesController::class, 'main'])->name('main');
@@ -51,11 +38,12 @@ Route::get('footer', [PagesController::class, 'footer'])->name('footer');
 
 
 
-Route::prefix('admin/')->name('admin.')->group(function(){
+Route::prefix('admin/')->name('admin.')->middleware('auth')->group(function(){
     Route::get('dashboard', function(){
         return view('admin.layouts.dashboard');
     })->name('dashboard');
 
+    
     Route::resource('infos', InfoController::class);
     Route::resource('groups', GroupController::class);
     Route::resource('teachers', TeacherController::class);
@@ -68,10 +56,22 @@ Route::prefix('admin/')->name('admin.')->group(function(){
     Route::resource('numbers', NumberController::class);
     Route::resource('humans', HumanController::class);
 
-
-
 });
-    
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

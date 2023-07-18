@@ -34,6 +34,9 @@ class GroupController extends Controller
 
         Group::create($requestData);
 
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'groups', 'add', json_encode($requestData)));
+
         return redirect()->route('admin.groups.index');
     }
     
@@ -64,6 +67,8 @@ class GroupController extends Controller
         } 
 
         $group->update($requestData);
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'groups', 'update', json_encode($requestData)));
 
         return redirect()->route('admin.groups.index');
     }
@@ -71,6 +76,9 @@ class GroupController extends Controller
     
     public function destroy(Group $group)
     {
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'groups', 'delete', json_encode($group)));
+
         if(isset($group->img) && file_exists(public_path('/files/'.$group->img))){
             unlink(public_path('/files/'.$group->img));
         }

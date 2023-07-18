@@ -33,6 +33,8 @@ class WinController extends Controller
         }
 
         Win::create($requestData);
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'wins', 'add', json_encode($requestData)));
 
         return redirect()->route('admin.wins.index');
     }
@@ -63,6 +65,8 @@ class WinController extends Controller
         }
 
         $win->update($requestData);
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'wins', 'update', json_encode($requestData)));
 
         return redirect()->route('admin.wins.index');
     }
@@ -70,6 +74,9 @@ class WinController extends Controller
     
     public function destroy(Win $win)
     {
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'wins', 'delete', json_encode($win)));
+
         if(isset($win->img) && file_exists(public_path('/files/'.$win->img))){
             unlink(public_path('/files/'.$win->img));
         }

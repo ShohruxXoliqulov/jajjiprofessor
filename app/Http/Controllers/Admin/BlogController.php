@@ -33,6 +33,10 @@ class BlogController extends Controller
         }
 
         Blog::create($requestData);
+
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'blogs', 'add', json_encode($requestData)));
+
         return redirect()->route('admin.blogs.index');
     }
 
@@ -63,12 +67,18 @@ class BlogController extends Controller
 
         $blog->update($requestData);
 
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'blogs', 'update', json_encode($requestData)));
+
         return redirect()->route('admin.blogs.index');
     }
 
     
     public function destroy(Blog $blog)
     {
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'blogs', 'delete', json_encode($blog)));
+
         if(isset($blog->img) && file_exists(public_path('/files/'.$blog->img))){
             unlink(public_path('/files/'.$blog->img));
         }

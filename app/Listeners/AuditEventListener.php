@@ -24,13 +24,13 @@ class AuditEventListener
      * @param  object  $event
      * @return void
      */
-    public function handle(AuditEventListener $event)
+    public function handle(AuditEvent $event)
     {
         DB::table('audits')->insert([
             'user_name'=>$event->user,
             'table_name'=>$event->table_name,
             'event_type'=>$event->event_type,
-            'data'=>$event->date,
+            'data'=>$event->data,
             'date'=>$event->date('Y-m-d H:i:s'),
         ]);
     }

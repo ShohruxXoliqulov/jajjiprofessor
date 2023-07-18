@@ -71,12 +71,19 @@ class InfoController extends Controller
 
         $info->update($requestData);
 
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'infos', 'update', json_encode($requestData)));
+
+
         return redirect()->route('admin.infos.index');
     }
 
     
     public function destroy(Info $info)
     {
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'infos', 'delete', json_encode($info)));
+        
         if(isset($info->icon) && file_exists(public_path('/files/'.$info->icon))){
             unlink(public_path('/files/'.$info->icon));
         }

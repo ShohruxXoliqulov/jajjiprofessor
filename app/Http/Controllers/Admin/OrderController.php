@@ -28,6 +28,8 @@ class OrderController extends Controller
         $requestData = $request->all();
 
         Order::create($requestData);
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'orders', 'add', json_encode($requestData)));
         return redirect()->route('admin.orders.index');
     }
 
@@ -48,12 +50,16 @@ class OrderController extends Controller
     {
         $requestData = $request->all();
         $order->update($requestData);
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'orders', 'update', json_encode($requestData)));
         return redirect()->route('admin.orders.index');
     }
 
     
     public function destroy(Order $order)
     {
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'orders', 'delete', json_encode($order)));
         $order->delete();
         return redirect()->route('admin.orders.index');
     }

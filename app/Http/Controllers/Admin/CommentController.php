@@ -43,6 +43,9 @@ class CommentController extends Controller
 
         Comment::create($requestData);
 
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'comments', 'add', json_encode($requestData)));
+
         return redirect()->route('admin.comments.index');
     }
 
@@ -87,12 +90,18 @@ class CommentController extends Controller
 
         $comment->update($requestData);
 
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'comments', 'update', json_encode($requestData)));
+
         return redirect()->route('admin.comments.index');
     }
 
     
     public function destroy(Comment $comment)
     {
+
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'comments', 'delete', json_encode($comment)));
 
         if(isset($comment->icon) && file_exists(public_path('/files/'.$comment->icon))){
             unlink(public_path('/files/'.$comment->icon));

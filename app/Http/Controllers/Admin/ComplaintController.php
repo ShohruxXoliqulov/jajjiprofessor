@@ -26,6 +26,8 @@ class ComplaintController extends Controller
     {
         $requestData = $request->all();
         Complaint::create($requestData);
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'complaints', 'add', json_encode($requestData)));
         return redirect()->route('admin.complaints.index');
     }
 
@@ -46,12 +48,16 @@ class ComplaintController extends Controller
     {
         $requestData = $request->all();
         $complaint->update($requestData);
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'complaints', 'update', json_encode($requestData)));
         return redirect()->route('admin.complaints.index');
     }
 
     
     public function destroy(Complaint $complaint)
     {
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'complaints', 'delete', json_encode($complaint)));
         $complaint->delete();
         return redirect()->route('admin.complaints.index');
     }

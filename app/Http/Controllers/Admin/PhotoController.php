@@ -32,6 +32,8 @@ class PhotoController extends Controller
         }
 
         Photo::create($requestData);
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'photos', 'add', json_encode($requestData)));
 
         return redirect()->route('admin.photos.index');
     }
@@ -62,12 +64,17 @@ class PhotoController extends Controller
         }
         $photo->update($requestData);
 
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'photos', 'update', json_encode($requestData)));
+
         return redirect()->route('admin.photos.index');
     }
 
     
     public function destroy(Photo $photo)
     {
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'photos', 'delete', json_encode($comment)));
         if(isset($photo->img) && file_exists(public_path('/files/'.$photo->img))){
             unlink(public_path('/files/'.$photo->img));
         }

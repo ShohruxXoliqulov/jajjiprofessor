@@ -34,6 +34,9 @@ class TeacherController extends Controller
 
         Teacher::create($requestData);
 
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'teachers', 'add', json_encode($requestData)));
+
         return redirect()->route('admin.teachers.index');
     }
 
@@ -63,6 +66,8 @@ class TeacherController extends Controller
         }
 
         Teacher::update($requestData);
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'teachers', 'update', json_encode($requestData)));
 
         return redirect()->route('admin.teachers.index');
     }
@@ -70,6 +75,9 @@ class TeacherController extends Controller
     
     public function destroy(Teacher $teacher)
     {
+        $user = auth()->user()->name;
+        event(new AuditEvent($user, 'teachers', 'delete', json_encode($teacher)));
+        
         if(isset($teacher->img) && file_exists(public_path('/files/'.$teacher->img))){
             unlink(public_path('/files/'.$teacher->img));
         }
